@@ -1,0 +1,45 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href={{url_for('static', filename='style.css')}}>
+    <title>Xentara Configuration</title>
+  </head>
+  
+    <body>
+		<div class="container ">	        
+			<header class="row">
+				<div class="col-xs-12">	
+					<h1>Xentara Configuration</h1>	
+                </div>
+            </header>  
+             	
+			<section class="row">
+				<div class="col-xs-12">						
+					<h2 id="introHeader">Upload your CSV File</h2>
+					
+					<fieldset>
+						<input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />
+					</fieldset>
+
+					<ul id="errorOutPut"  class="outPut hidden">						
+						<li>Sorry there has been an error.</li>
+					</ul>
+					
+				</div>
+			</section>
+                
+            <footer class="row">
+                <div class="col-xs-12">	
+                </div>
+            </footer>
+		</div>		
+		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+    <script href={{url_for('static', filename='upload.js')}}>
+	
+    </body>
