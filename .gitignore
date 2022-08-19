@@ -1,3 +1,4 @@
 venv/*
 csvConfigs/*
 jsonConfigs/*
+__pycache__/*
