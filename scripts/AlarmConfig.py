@@ -1,7 +1,7 @@
 import json
 import uuid
 import pandas as pd
-import threading
+import multiprocessing
 
 def readConfigInfo(configType:str, configFile:str)->list:
     csvFile = pd.read_csv(configFile, encoding='cp1252',delimiter=';')
@@ -54,18 +54,17 @@ def writeJsonConfigToFile(jsonConfigList,fileName):
         json_object = json.dumps(jsonConfigList, indent=4, ensure_ascii=False)
         outfile.write(json_object)
 
-def main():
+def main(configFile:str):
    # create Code SYS Variable Configuration 
-    configList = readConfigInfo("PLC",'./Alarm.csv')
+    configList = readConfigInfo("PLC",configFile)
     jsonConfigList = createCodeSysVarConfigs(configList)
     writeJsonConfigToFile(jsonConfigList,"jsonConfigs/CodeSysVarConfig")
 
     # create Influx DB microservice configuration
-    influxDBConfigList = readConfigInfo("InfluxDBVar",'./Alarm.csv')
+    influxDBConfigList = readConfigInfo("InfluxDBVar",configFile)
     influxDBJSONConfigList = createInfluxDBConfigInfo(influxDBConfigList)
     writeJsonConfigToFile(influxDBJSONConfigList,"jsonConfigs/influxDBConfig")
     
 
 if __name__=="__main__":
-    thread = threading.Thread(target=main, daemon=True)
-    thread.start()
+   main()
