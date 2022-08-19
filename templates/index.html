@@ -22,7 +22,7 @@
 					
             <form action = "http://localhost:5000/uploader" method = "POST" 
                     enctype = "multipart/form-data">
-                    <input type = "file" name = "file" />
+                    <input type = "file" name = "file" accept=".csv" />
                     <input type = "submit"/>
                 </form>
 					<ul id="errorOutPut"  class="outPut hidden">						
@@ -41,6 +41,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 
-    <!-- <script href={{url_for('static', filename='upload.js')}}> -->
 	
     </body>
