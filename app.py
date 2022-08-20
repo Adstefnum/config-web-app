@@ -10,6 +10,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    os.system("mkdir csvConfigs")
+    os.system("mkdir jsonConfigs")
+    os.system("mkdir output")
+
     os.system("rm -rf csvConfigs/*")
     os.system("rm -rf jsonConfigs/*")
     os.system("rm -rf output/*")
