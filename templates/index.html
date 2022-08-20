@@ -20,14 +20,11 @@
 				<div class="col-xs-12">						
 					<h2 id="introHeader">Upload your CSV File</h2>
 					
-            <form action = "http://localhost:5000/uploader" method = "POST" 
+            <form action = "{{url_for('uploadFile')}}" method = "POST" 
                     enctype = "multipart/form-data">
                     <input type = "file" name = "file" accept=".csv" />
                     <input type = "submit"/>
                 </form>
-					<ul id="errorOutPut"  class="outPut hidden">						
-						<li>Sorry there has been an error.</li>
-					</ul>
 					
 				</div>
 			</section>
