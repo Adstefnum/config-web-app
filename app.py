@@ -4,6 +4,7 @@ from io import BytesIO
 from zipfile import ZipFile
 from scripts.AlarmConfig import main
 import os
+import shutil
 
 app = Flask(__name__)
 
@@ -11,6 +12,7 @@ app = Flask(__name__)
 def index():
     os.system("rm -rf csvConfigs/*")
     os.system("rm -rf jsonConfigs/*")
+    os.system("rm -rf output/*")
     return render_template('index.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
@@ -23,18 +25,12 @@ def uploadFile():
 @app.route('/download-configs')
 def downloadConfigs():
     main('./csvConfigs/upload.csv')
-    target = './jsonConfigs'
+    shutil.make_archive('output/configs', 'zip', './jsonConfigs')
+    path = 'output/configs.zip'
 
-    stream = BytesIO()
-    with ZipFile(stream, 'w') as zf:
-        for file in glob(os.path.join(target, '*.json')):
-            zf.write(file, os.path.basename(file))
-    stream.seek(0)
 
-    return send_from_directory(
-        stream,
-        as_attachment=True,
-        attachment_filename='archive.zip'
+    return send_file(
+      path, as_attachment=True
     )
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
